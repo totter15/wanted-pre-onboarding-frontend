@@ -16,6 +16,6 @@ export async function updateTodo(id, todoData) {
 }
 
 export async function deleteTodo(id) {
-	const data = await client.delete(`todo/${id}`);
+	const data = await client.delete(`todos/${id}`);
 	return data;
 }

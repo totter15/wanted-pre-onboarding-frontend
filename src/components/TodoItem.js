@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function TodoItem({ item, updateTodoHandler, deleteHandler }) {
+function TodoItem({ item, updateTodoHandler, deleteTodoHandler }) {
 	const { todo, isCompleted, id } = item ?? {};
 
 	const [isEdit, setIsEdit] = useState(false);
@@ -14,9 +14,13 @@ function TodoItem({ item, updateTodoHandler, deleteHandler }) {
 		updateTodoHandler(id, todo, e.target.checked);
 	}
 
-	async function submitHandler() {
+	function submitHandler() {
 		updateTodoHandler(id, modifyTodo, isCompleted);
 		setIsEdit(false);
+	}
+
+	function deleteHandler() {
+		deleteTodoHandler(id);
 	}
 
 	return (

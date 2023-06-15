@@ -1,6 +1,6 @@
 import './todo.scss';
 import TodoItem from './components/TodoItem';
-import { createTodo, getTodos, updateTodo } from './api/todo';
+import { createTodo, deleteTodo, getTodos, updateTodo } from './api/todo';
 import { useEffect, useState } from 'react';
 
 function Todo() {
@@ -31,6 +31,11 @@ function Todo() {
 		await getTodoHandler();
 	}
 
+	async function deleteTodoHandler(id) {
+		await deleteTodo(id);
+		await getTodoHandler();
+	}
+
 	return (
 		<main className='todo'>
 			<h1 className='todo__title'>TODO LIST</h1>
@@ -51,6 +56,7 @@ function Todo() {
 						item={todo}
 						key={todo.id}
 						updateTodoHandler={updateTodoHandler}
+						deleteTodoHandler={deleteTodoHandler}
 					/>
 				))}
 			</ul>
