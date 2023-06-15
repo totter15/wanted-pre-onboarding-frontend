@@ -10,7 +10,6 @@
 		font-size: 1.5rem;
 		margin-bottom: 50px;
 		color: rgb(97, 100, 102);
-		// text-decoration-line: underline;
 	}
 	&__form {
 		width: 24vw;
@@ -34,6 +33,11 @@
 				border-color: rgb(150, 164, 177);
 			}
 		}
+	}
+	&__error-text {
+		margin-top: 12px;
+		font-size: 0.875rem;
+		color: rgb(103, 123, 158);
 	}
 	&__button {
 		cursor: pointer;

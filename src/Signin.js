@@ -58,6 +58,11 @@ function Signin() {
 						value={email}
 						onChange={onChangeHandler}
 					/>
+					{input.email.length > 0 && !input.email.includes('@') && (
+						<div className='signin__error-text'>
+							이메일에는 @가 포함되어야 합니다.
+						</div>
+					)}
 				</div>
 				<div className='signin__input'>
 					<label htmlFor='password'>비밀번호</label>
@@ -69,6 +74,11 @@ function Signin() {
 						value={password}
 						onChange={onChangeHandler}
 					/>
+					{input.password.length > 0 && input.password.length < 8 && (
+						<div className='signin__error-text'>
+							비밀번호는 8자 이상이어야 합니다.
+						</div>
+					)}
 				</div>
 				<button
 					onClick={signinHandler}
