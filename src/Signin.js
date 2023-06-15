@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import './signin.scss';
 import { signIn } from './api/auth';
 import { useNavigate } from 'react-router-dom';
-import client from './api/client';
 
 function Signin() {
 	const navigate = useNavigate();
@@ -35,11 +34,6 @@ function Signin() {
 
 				//로컬스토리지 저장
 				localStorage.setItem('token', access_token);
-				//header에 default 토큰 저장
-				client.defaults.headers.common[
-					'Authorization'
-				] = `Bearer ${access_token}`;
-
 				navigate('/todo');
 			}
 		} catch (e) {
