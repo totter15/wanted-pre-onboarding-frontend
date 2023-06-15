@@ -78,4 +78,12 @@
 			}
 		}
 	}
+
+	&__empty-todo {
+		text-align: center;
+		margin-top: 80px;
+		color: rgb(173, 176, 179);
+		font-weight: 600;
+		font-size: 1.125rem;
+	}
 }

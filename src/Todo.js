@@ -50,16 +50,20 @@ function Todo() {
 					추가
 				</button>
 			</div>
-			<ul className='todo__list'>
-				{todos.map((todo) => (
-					<TodoItem
-						item={todo}
-						key={todo.id}
-						updateTodoHandler={updateTodoHandler}
-						deleteTodoHandler={deleteTodoHandler}
-					/>
-				))}
-			</ul>
+			{todos.length > 0 ? (
+				<ul className='todo__list'>
+					{todos.map((todo) => (
+						<TodoItem
+							item={todo}
+							key={todo.id}
+							updateTodoHandler={updateTodoHandler}
+							deleteTodoHandler={deleteTodoHandler}
+						/>
+					))}
+				</ul>
+			) : (
+				<div className='todo__empty-todo'>할일을 추가해 주세요.</div>
+			)}
 		</main>
 	);
 }
