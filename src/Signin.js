@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './signin.scss';
 import { signIn } from './api/auth';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,12 @@ function Signin() {
 		password: '',
 	});
 	const { email, password } = input;
+
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			navigate('/todo');
+		}
+	}, []);
 
 	function onChangeHandler(e) {
 		const { value, name } = e.target ?? {};

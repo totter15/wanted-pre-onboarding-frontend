@@ -6,7 +6,6 @@ import Signin from './Signin';
 import Todo from './Todo';
 
 function App() {
-	const token = localStorage.getItem('token');
 	const router = createBrowserRouter([
 		{
 			path: '/',
@@ -15,11 +14,11 @@ function App() {
 		},
 		{
 			path: '/signup',
-			element: token ? <Todo /> : <Signup />,
+			element: <Signup />,
 		},
 		{
 			path: '/signin',
-			element: token ? <Todo /> : <Signin />,
+			element: <Signin />,
 		},
 		{
 			path: '/todo',

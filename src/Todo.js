@@ -2,13 +2,19 @@ import './todo.scss';
 import TodoItem from './components/TodoItem';
 import { createTodo, deleteTodo, getTodos, updateTodo } from './api/todo';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Todo() {
+	const navigate = useNavigate();
 	const [todos, setTodos] = useState([]);
 	const [input, setInput] = useState('');
 
 	useEffect(() => {
-		getTodoHandler();
+		if (!localStorage.getItem('token')) {
+			navigate('/signin');
+		} else {
+			getTodoHandler();
+		}
 	}, []);
 
 	function onChangeHandler(e) {
