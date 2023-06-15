@@ -23,6 +23,11 @@ function TodoItem({ item, updateTodoHandler, deleteTodoHandler }) {
 		deleteTodoHandler(id);
 	}
 
+	function cancelHandler() {
+		setIsEdit(false);
+		setModifyTodo(todo);
+	}
+
 	return (
 		<li className='todo__list-item'>
 			{isEdit ? (
@@ -42,7 +47,7 @@ function TodoItem({ item, updateTodoHandler, deleteTodoHandler }) {
 					<button data-testid='submit-button' onClick={submitHandler}>
 						제출
 					</button>
-					<button data-testid='cancel-button' onClick={() => setIsEdit(false)}>
+					<button data-testid='cancel-button' onClick={cancelHandler}>
 						취소
 					</button>
 				</>
