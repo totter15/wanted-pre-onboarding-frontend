@@ -1,20 +1,22 @@
 import { useState } from 'react';
 
-function TodoItem({ item, submitHandler, deleteHandler }) {
-	const { todo, isComplete } = item ?? {};
+function TodoItem({ item, updateTodoHandler, deleteHandler }) {
+	const { todo, isCompleted, id } = item ?? {};
 
 	const [isEdit, setIsEdit] = useState(false);
-	const [modifyInput, setModifyInput] = useState(todo);
+	const [modifyTodo, setModifyTodo] = useState(todo);
 
 	function onChangeHandler(e) {
-		setModifyInput(e.target.value);
+		setModifyTodo(e.target.value);
 	}
 
-	function cancelHandler() {
-		setIsEdit(false);
+	function checkHandler(e) {
+		updateTodoHandler(id, todo, e.target.checked);
 	}
-	function editHandler() {
-		setIsEdit(true);
+
+	async function submitHandler() {
+		updateTodoHandler(id, modifyTodo, isCompleted);
+		setIsEdit(false);
 	}
 
 	return (
@@ -22,27 +24,35 @@ function TodoItem({ item, submitHandler, deleteHandler }) {
 			{isEdit ? (
 				<>
 					<label>
-						<input type='checkbox' checked={isComplete} />
+						<input
+							type='checkbox'
+							defaultChecked={isCompleted}
+							onChange={checkHandler}
+						/>
 						<input
 							data-testid='modify-input'
-							value={modifyInput}
+							value={modifyTodo}
 							onChange={onChangeHandler}
 						/>
 					</label>
 					<button data-testid='submit-button' onClick={submitHandler}>
 						제출
 					</button>
-					<button data-testid='cancel-button' onClick={cancelHandler}>
+					<button data-testid='cancel-button' onClick={() => setIsEdit(false)}>
 						취소
 					</button>
 				</>
 			) : (
 				<>
 					<label>
-						<input type='checkbox' checked={isComplete} />
+						<input
+							type='checkbox'
+							defaultChecked={isCompleted}
+							onChange={checkHandler}
+						/>
 						<span>{todo}</span>
 					</label>
-					<button data-testid='modify-button' onClick={editHandler}>
+					<button data-testid='modify-button' onClick={() => setIsEdit(true)}>
 						수정
 					</button>
 					<button data-testid='delete-button' onClick={deleteHandler}>
